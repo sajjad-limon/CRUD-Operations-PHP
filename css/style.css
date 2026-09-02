@@ -180,4 +180,8 @@ body {
   font-family: Verdana, Geneva, sans-serif;;
   text-transform: uppercase;
   text-align: center;
+  display: none;
+}
+h2.home-title {
+  margin-bottom: 10px;
 }

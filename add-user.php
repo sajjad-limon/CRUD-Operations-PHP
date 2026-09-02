@@ -1,4 +1,4 @@
-<?php 
+<?php
     include_once "functions.php";
     get_header();
     get_sidebar();
@@ -10,25 +10,19 @@
       $email = $_POST['email'];
       $number = $_POST['number'];
       $username = $_POST['username'];
-      $password = md5($_POST['pass']);
-      $re_password = md5($_POST['re_pass']);
+      $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
       $insert_query = "INSERT INTO students(std_name,std_email,std_number,std_username,std_password)
       VALUES('$name','$email','$number','$username','$password')";
 
-      if( !empty($name) && !empty($email) && !empty($number) && !empty($password)) {
+      if( !empty($name) && !empty($email) && !empty($number) && !empty($username) && !empty($password)) {
 
-        if ($password == $re_password) {
           if (mysqli_query($connect, $insert_query)) {
              echo "<h4 class='message_area'> Registration Successfull! </h4>";
           }
-    
-          }else{
-            echo "<h4 class='message_area'> Password Does not Match! </h4>";
-          }
 
       } else {
-        echo "<h4 class='message_area'> Please Fiil out all fields! </h4>"; 
+        echo "<h4 class='message_area text-danger'> Please Fiil out all fields! </h4>";
       }
     }
  ?>
@@ -48,54 +42,45 @@
           <div class="form-group">
             <label for="" class="col-sm-3 control-label">Name</label>
             <div class="col-sm-8">
-              <input type="text" name="name" class="form-control" placeholder="">
+              <input type="text" name="name" class="form-control" placeholder="Full Name">
             </div>
           </div>
 
           <div class="form-group">
             <label for="" class="col-sm-3 control-label">Email</label>
             <div class="col-sm-8">
-              <input type="email" name="email" class="form-control" placeholder="">
+              <input type="email" name="email" class="form-control" placeholder="Email Address">
             </div>
           </div>
 
             <div class="form-group">
             <label for="" class="col-sm-3 control-label">Number</label>
             <div class="col-sm-8">
-              <input type="number" name="number" class="form-control" placeholder="">
+              <input type="text" name="number" class="form-control" placeholder="Phone Number">
             </div>
           </div>
 
           <div class="form-group">
             <label for="" class="col-sm-3 control-label">UserName</label>
             <div class="col-sm-8">
-              <input type="text" name="username" class="form-control" placeholder="">
+              <input type="text" name="username" class="form-control" placeholder="Username">
             </div>
           </div>
 
-          
           <div class="form-group">
             <label for="" class="col-sm-3 control-label">Password</label>
             <div class="col-sm-8">
-              <input type="password" name="pass" class="form-control" placeholder="">
+              <input type="password" name="pass" class="form-control" placeholder="Password">
             </div>
           </div>
 
-            <div class="form-group">
-            <label for="" class="col-sm-3 control-label">Confirm Password</label>
-            <div class="col-sm-8">
-              <input type="password" name="re_pass" class="form-control" placeholder="">
-            </div>
-          </div>
-          
-          
       </div>
       <div class="panel-footer text-center">
-        <button id="register" class="btn btn-sm btn-primary">REGISTRATION</button>
+        <button id="register" class="btn btn-sm btn-primary">Register User</button>
       </div>
     </div>
     </form>
 </div><!--col-md-12 end-->
-<?php 
+<?php
     get_footer();
  ?>

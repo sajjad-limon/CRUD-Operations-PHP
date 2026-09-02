@@ -1,4 +1,4 @@
-<?php 
+<?php
     $db_host = "localhost";
     $db_user = "root";
     $db_pass = "";
@@ -9,6 +9,3 @@
     if (!$connect) {
     	echo " Database Connection Failed";
     }
-
-
- ?>
